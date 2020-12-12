@@ -52,11 +52,16 @@ def calculate_vi(foldername):
         
         #Calculando o índice ExGR
         exgr = exg - exr
-        
+        np.seterr(divide='ignore', invalid='ignore') # ignore divide by zero errors in the index calculation
+        #mgvri = (green_arr*green_arr-red_arr*red_arr)/(green_arr*green_arr+red_arr*red_arr)
+        #gli = (2*green_arr - red_arr - blue_arr)/(2*green_arr + red_arr + blue_arr)
+        mpri = (green_arr-red_arr)/(green_arr+red_arr)
+        #rgvbi = (green_arr - (blue_arr*red_arr)) / ((green_arr*green_arr) + (blue_arr*red_arr))
+        #tgi = ((green_arr - 0.39)*(red_arr-0.61))*blue_arr
 
         ### SALVAR RESULTADO DO INDICE NO ARQUIVO CSV ###
         
-        values = list(exgr.flatten()) #not labeled
+        values = list(mpri.flatten()) #not labeled
         
         #SALVA OS values QUE SAO 32 X 32 A IMAGEM
         if (len(values) == 1024):
