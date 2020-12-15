@@ -8,9 +8,13 @@ docker-compose up -d
 na pasta raiz do projeto.
 
 Para acessar basta abrir a localhost no navegador.
+
 O botão GET serve só para ver se tá funcionando o container da aplicação.
+
 Para classificar um capim basta clicar em choose file e fazer upload da imagem do dossel dos capins, após alguns segunda a imagem classificada deverá ser exibida na página.
+
 OBSERVAÇÃO 1: Não está sendo feitas verificações se o upload é a imagem de capim ou outra coisa, portanto, se fizer upload de outra coisa que seja diferente de capim resultará em erro.
+
 OBSERVAÇÃO 2: O tamanho da imagem também deve ser das mesmas dimensões das imagens que deixei para exemplo neste repositório. Para fazer classificações de imagens de dimensões diferentes, deverá ser atualizado as dimensões e outros cálculos necessários no código dos scripts utilizados pela API Flask.
 
 Todas as imagens recebidas e tratadas estão sendo salvas no docker volume images-data.
