@@ -11,7 +11,7 @@ Para acessar basta abrir a localhost no navegador.
 
 O botão GET serve só para ver se tá funcionando o container da aplicação.
 
-Para classificar um capim basta clicar em choose file e fazer upload da imagem do dossel dos capins, após alguns segunda a imagem classificada deverá ser exibida na página.
+Para classificar um capim basta clicar em choose file e fazer upload da imagem do dossel dos capins, após alguns segundos a imagem classificada deverá ser exibida na página.
 
 OBSERVAÇÃO 1: Não estão sendo feitas verificações se o upload é a imagem de capim ou outra coisa, portanto, se fizer upload de outra coisa que seja diferente de capim resultará em erro.
 
