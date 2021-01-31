@@ -2,7 +2,7 @@ import cv2
 import sys
 import os
 
-def patch_image(filename,foldername):
+def patch_image(filename,foldername,nRows,mCols):
     dirName = "./patched_images/"+foldername
     if not os.path.exists(dirName):
         os.makedirs(dirName)
@@ -10,9 +10,9 @@ def patch_image(filename,foldername):
     # O numero de colunas e linhas eh relativo a resolucao da image.
     # Para encontrar o nRows e nCols basta dividir as dimensoes da imagem por 32.
     # Por exemplo: uma imagem de resolucao 5472x3648 teria 171 cols e 114 rows.
-    nRows = 34
+    #nRows = 34
     # Number of columns
-    mCols = 47
+    #mCols = 47
     # Starting counter
     count = 0
 

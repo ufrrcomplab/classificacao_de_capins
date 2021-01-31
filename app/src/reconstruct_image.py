@@ -3,7 +3,7 @@ import PIL
 from PIL import Image, ImageDraw
 import pandas as pd
 
-def reconstruct_image(foldername):
+def reconstruct_image(foldername,nrows,ncols,wid,hei):
     dir_name = './patched_images/'+foldername
     labels_file = './csv_classifications/'+foldername+'_labels.csv'
     save_path = './images_classified/'
@@ -12,9 +12,12 @@ def reconstruct_image(foldername):
     labels = df.values
     start_row = 0
     # mesmo valor de nRows do patch_image.py
-    end_row = 47 #numero de linhas para formar uma linha de imagem
+    end_row = nrows
+    increment = end_row
 
-    for j in range (1,34+1):
+    reso = 32*wid
+
+    for j in range (1,ncols+1):
         list_im = [dir_name+'/patch_'+str(i)+'.jpg' for i in range(start_row+1,end_row+1)]
         c = 0 #contador para iterar no array de imagens
 
@@ -28,20 +31,20 @@ def reconstruct_image(foldername):
                 c += 1
 
         start_row = end_row
-        end_row += 47
+        end_row += increment
         
         img_row = np.hstack(imgs)
 
         if(j == 1):
             imgs_comb = np.vstack(img_row)
         else:
-            imgs_comb = np.vstack((imgs_comb, img_row.reshape(48128,3)))
+            imgs_comb = np.vstack((imgs_comb, img_row.reshape(reso,3)))
 
         del img_row #liberar img_row
 
-        j += 47
+        j += increment
 
-    # save that beautiful picture
-    imgs_comb = PIL.Image.fromarray(imgs_comb.reshape(1088,1504,3))
+    # save the picture
+    imgs_comb = PIL.Image.fromarray(imgs_comb.reshape(hei,wid,3))
     imgs_comb.save(save_path+foldername+'_classified.png')    
 

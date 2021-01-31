@@ -2,7 +2,7 @@ import csv
 import cv2
 import numpy as np
 
-def calculate_vi(foldername):
+def calculate_vi(foldername,npatches):
     #Create csv file
     dir_name = "./patched_images/"+foldername
     cols = ['pixel0']
@@ -18,7 +18,7 @@ def calculate_vi(foldername):
         spamwriter.writerow(cols)
 
     #Vegetation index 
-    for k in range(1,1598+1):
+    for k in range(1,npatches+1):
         #abrir imagem
         image = cv2.imread(dir_name+'/patch_'+str(k)+'.jpg')
         
@@ -52,16 +52,11 @@ def calculate_vi(foldername):
         
         #Calculando o índice ExGR
         exgr = exg - exr
-        np.seterr(divide='ignore', invalid='ignore') # ignore divide by zero errors in the index calculation
-        #mgvri = (green_arr*green_arr-red_arr*red_arr)/(green_arr*green_arr+red_arr*red_arr)
-        #gli = (2*green_arr - red_arr - blue_arr)/(2*green_arr + red_arr + blue_arr)
-        mpri = (green_arr-red_arr)/(green_arr+red_arr)
-        #rgvbi = (green_arr - (blue_arr*red_arr)) / ((green_arr*green_arr) + (blue_arr*red_arr))
-        #tgi = ((green_arr - 0.39)*(red_arr-0.61))*blue_arr
+        
 
         ### SALVAR RESULTADO DO INDICE NO ARQUIVO CSV ###
         
-        values = list(mpri.flatten()) #not labeled
+        values = list(exgr.flatten()) #not labeled
         
         #SALVA OS values QUE SAO 32 X 32 A IMAGEM
         if (len(values) == 1024):
